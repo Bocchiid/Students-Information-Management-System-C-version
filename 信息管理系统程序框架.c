@@ -129,6 +129,46 @@ void changeElement(node **temp, elemType x)
 	(*temp)->data = x;
 }
 
+/**************************************
+功能：查找上一个学生的信息
+形参: node* head, node* temp
+返回值：node*
+日期：2025.03.01
+版本：v1
+作者: 韩贤煜
+***************************************/
+node *findPreElement(node *head, node *temp)
+{
+	node *q = head;
+
+	while (q->next != temp)
+	{
+		q = q->next;
+	}
+
+	return q;
+}
+
+/**************************************
+功能：删除学生信息
+形参: node*head, node **temp
+返回值：void
+日期：2025.03.01
+版本：v2
+作者: 韩贤煜
+***************************************/
+void deleteElement(node *head, node **tail, node *temp)
+{
+	node *q = findPreElement(head, temp);
+	q->next = temp->next;
+	free(temp);
+
+	if (q->next == NULL)
+	{
+		(*tail) = q;
+	}
+}
+
 int main()
 {
 	elemType x;
@@ -195,8 +235,19 @@ int main()
 		{
 			printf("Delete:\n");
 			// 6.1输入学号
+			scanf("%s", id);
 			// 6.2如果成功删除（函数）则deleted
-			// 否则 Failed
+			temp = findElement(head, id);
+
+			if (temp)
+			{
+				deleteElement(head, &tail, temp);
+				printf("Deleted\n");
+			}
+			else // 否则 Failed
+			{
+				printf("Failed\n");
+			}
 		}
 		// 7、查找，
 		if (strcmp(op, "Find") == 0)
