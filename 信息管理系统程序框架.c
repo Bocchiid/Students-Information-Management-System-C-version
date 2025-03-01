@@ -137,10 +137,18 @@ int main()
 			printf("Insert:\n");
 			// 3.1、输入学生信息
 			inputElement(&x);
-			insertElement(&tail, x);
-			printElement(x);
 			// 3.2如果成功插入信息（函数），则输出学生信息，
-			// 否则，输出 "Failed\n"
+			temp = findElement(head, x.id);
+
+			if (!temp)
+			{
+				insertElement(&tail, x);
+				printElement(x);
+			}
+			else // 否则，输出 "Failed\n"
+			{
+				printf("Failed\n");
+			}
 		}
 		// 4、List
 		if (strcmp(op, "List") == 0)
