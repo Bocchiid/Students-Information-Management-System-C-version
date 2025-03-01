@@ -2,8 +2,51 @@
 #include <string.h>
 #include <stdlib.h>
 
+typedef struct ElemType
+{
+	char id[20];
+	char name[20];
+	char sex[20];
+	double x;
+	double y;
+	double z;
+} elemType;
+
+typedef struct Node
+{
+	elemType data;
+	struct node *next;
+} node;
+
+/**************************************
+功能：输入学生信息
+形参: elemType *x
+返回值：void
+日期：2025.03.01
+版本：v1
+作者: 韩贤煜
+***************************************/
+void inputElement(elemType *x)
+{
+	scanf("%s %s %s %lf %lf %lf", x->id, x->name, x->sex, &x->x, &x->y, &x->z);
+}
+
+/**************************************
+功能：输出学生信息
+形参: elemType x
+返回值：void
+日期：2025.03.01
+版本：v1
+作者: 韩贤煜
+***************************************/
+void printElement(elemType x)
+{
+	printf("%s %s %s %.1f %.1f %.1f\n", x.id, x.name, x.sex, x.x, x.y, x.z);
+}
+
 int main()
 {
+	elemType x;
 	// 1、链表或顺序表初始化
 
 	while (1)
@@ -12,23 +55,24 @@ int main()
 		// 2、读入命令字符串
 		scanf("%s", op);
 		// 3、如果 插入
-		if (strcpy(op, "Insert") == 0)
+		if (strcmp(op, "Insert") == 0)
 		{
 			printf("Insert:\n");
 			// 3.1、输入学生信息
-			// inputElement(&x);
+			inputElement(&x);
+			printElement(x);
 			// 3.2如果成功插入信息（函数），则输出学生信息，
 			// 否则，输出 "Failed\n"
 		}
 		// 4、List
-		if (strcpy(op, "List") == 0)
+		if (strcmp(op, "List") == 0)
 		{
 			printf("List:\n");
 			// 4.1排序（函数）
 			// 4.2输出（函数）
 		}
 		// 5、修改
-		if (strcpy(op, "Change") == 0)
+		if (strcmp(op, "Change") == 0)
 		{
 			printf("Change:\n");
 			// 5.1输入学生信息
@@ -36,7 +80,7 @@ int main()
 			// 否则输出 Failed
 		}
 		// 6、删除学生信息
-		if (strcpy(op, "Delete") == 0)
+		if (strcmp(op, "Delete") == 0)
 		{
 			printf("Delete:\n");
 			// 6.1输入学号
@@ -44,13 +88,13 @@ int main()
 			// 否则 Failed
 		}
 		// 7、查找，
-		if (strcpy(op, "Find") == 0)
+		if (strcmp(op, "Find") == 0)
 		{
 			printf("Find:\n");
 			// 输入学号
 			// 如果查找成功（函数），输出学生信息，否则，输出Failed
 		}
-		if (strcpy(op, "Quit") == 0)
+		if (strcmp(op, "Quit") == 0)
 		{
 			printf("Good bye!\n");
 			break;
