@@ -131,7 +131,7 @@ void changeElement(node **temp, elemType x)
 
 /**************************************
 功能：查找上一个学生的信息
-形参: node* head, node* temp
+形参: node *head, node *temp
 返回值：node*
 日期：2025.03.01
 版本：v1
@@ -151,7 +151,7 @@ node *findPreElement(node *head, node *temp)
 
 /**************************************
 功能：删除学生信息
-形参: node*head, node **temp
+形参: node *head, node **tail, node *temp
 返回值：void
 日期：2025.03.01
 版本：v2
@@ -166,6 +166,43 @@ void deleteElement(node *head, node **tail, node *temp)
 	if (q->next == NULL)
 	{
 		(*tail) = q;
+	}
+}
+
+/**************************************
+功能：将链表按学号大小从小到大排序
+形参: node *head
+返回值：void
+日期：2025.03.01
+版本：v1
+作者: 韩贤煜
+***************************************/
+void sortList(node *head)
+{
+	elemType temp;
+	node *p;
+	node *q = head->next;
+	node *min = head->next;
+
+	while (q)
+	{ // 选择排序
+		p = q->next;
+		min = q;
+
+		while (p)
+		{
+			if (strcmp(p->data.id, min->data.id) < 0)
+			{
+				min = p;
+			}
+
+			p = p->next;
+		}
+		// swap the data of two nodes
+		temp = min->data;
+		min->data = q->data;
+		q->data = temp;
+		q = q->next;
 	}
 }
 
@@ -208,6 +245,7 @@ int main()
 		{
 			printf("List:\n");
 			// 4.1排序（函数）
+			sortList(head);
 			// 4.2输出（函数）
 			printList(head);
 		}
