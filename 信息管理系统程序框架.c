@@ -116,6 +116,19 @@ node *findElement(node *head, char id[])
 	return p;
 }
 
+/**************************************
+功能：修改学生信息
+形参: node **temp, elemType x
+返回值：void
+日期：2025.03.01
+版本：v1
+作者: 韩贤煜
+***************************************/
+void changeElement(node **temp, elemType x)
+{
+	(*temp)->data = x;
+}
+
 int main()
 {
 	elemType x;
@@ -163,8 +176,19 @@ int main()
 		{
 			printf("Change:\n");
 			// 5.1输入学生信息
+			inputElement(&x);
 			// 5.2如果修改成功（函数），则输出学生信息
-			// 否则输出 Failed
+			temp = findElement(head, x.id);
+
+			if (temp)
+			{
+				changeElement(&temp, x);
+				printElement(temp->data);
+			}
+			else // 否则输出 Failed
+			{
+				printf("Failed\n");
+			}
 		}
 		// 6、删除学生信息
 		if (strcmp(op, "Delete") == 0)
