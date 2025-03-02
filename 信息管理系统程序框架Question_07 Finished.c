@@ -141,7 +141,7 @@ node *findPreElement(node *head, node *temp)
 {
 	node *q = head;
 
-	while (q->next != temp)
+	while (q->next && q->next != temp)
 	{
 		q = q->next;
 	}
