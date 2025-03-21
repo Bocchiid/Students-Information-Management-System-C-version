@@ -170,6 +170,21 @@ void deleteElement(node *head, node **tail, node *temp)
 }
 
 /**************************************
+功能：交换两个结点的数据域
+形参: elemType *a, elemType *b
+返回值：void
+日期：2025.03.21
+版本：v1
+作者: 韩贤煜
+***************************************/
+void swap(elemType *a, elemType *b)
+{
+    elemType temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+/**************************************
 功能：将链表按学号大小从小到大排序
 形参: node *head
 返回值：void
@@ -199,9 +214,7 @@ void sortList(node *head)
 			p = p->next;
 		}
 		// swap the data of two nodes
-		temp = min->data;
-		min->data = q->data;
-		q->data = temp;
+		swap(&q->data, &min->data);
 		q = q->next;
 	}
 }
